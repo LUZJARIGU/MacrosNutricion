@@ -1,0 +1,102 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a//dev/null b/Recordatorio24h.xml
+index 0000000000000000000000000000000000000000..e57ab725b32cd36d437199c2eabbb07a353f86e5 100644
+--- a//dev/null
++++ b/Recordatorio24h.xml
+@@ -0,0 +1,93 @@
++<?xml version="1.0"?>
++<?mso-application progid="Excel.Sheet"?>
++<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
++ xmlns:o="urn:schemas-microsoft-com:office:office"
++ xmlns:x="urn:schemas-microsoft-com:office:excel"
++ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
++ xmlns:html="http://www.w3.org/TR/REC-html40">
++ <Styles>
++  <Style ss:ID="Default" ss:Name="Normal">
++   <Alignment ss:Vertical="Bottom"/>
++   <Borders/>
++   <Font/>
++   <Interior/>
++   <NumberFormat/>
++   <Protection/>
++  </Style>
++  <Style ss:ID="sHeader">
++   <Font ss:Bold="1"/>
++  </Style>
++ </Styles>
++ <Worksheet ss:Name="Recordatorio 24h">
++  <Table>
++   <Row>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Hora</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Alimento</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Cantidad estimada</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Grupo alimentario</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Preparación</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Observación clínica</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Peso (g)</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Kcal</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Proteína (g)</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Grasa (g)</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">CHO (g)</Data></Cell>
++   </Row>
++   <Row>
++    <Cell><Data ss:Type="String">10:00</Data></Cell>
++    <Cell><Data ss:Type="String">Empanada con queso</Data></Cell>
++    <Cell><Data ss:Type="String">1 unidad mediana</Data></Cell>
++    <Cell><Data ss:Type="String">Cereal + grasa + proteína</Data></Cell>
++    <Cell><Data ss:Type="String">Frita</Data></Cell>
++    <Cell><Data ss:Type="String">Alta en grasa, poca fibra, sin vegetal</Data></Cell>
++    <Cell ss:Formula="=VALUE(LEFT(C2, FIND(&quot; &quot;,C2))) * VLOOKUP(B2,'Equivalencias caseras'!A:B,2,FALSE)"><Data ss:Type="Number">0</Data></Cell>
++    <Cell ss:Formula="=G2 * VLOOKUP(B2,'Composicion 100g'!A:E,2,FALSE)/100"><Data ss:Type="Number">0</Data></Cell>
++    <Cell ss:Formula="=G2 * VLOOKUP(B2,'Composicion 100g'!A:E,3,FALSE)/100"><Data ss:Type="Number">0</Data></Cell>
++    <Cell ss:Formula="=G2 * VLOOKUP(B2,'Composicion 100g'!A:E,4,FALSE)/100"><Data ss:Type="Number">0</Data></Cell>
++    <Cell ss:Formula="=G2 * VLOOKUP(B2,'Composicion 100g'!A:E,5,FALSE)/100"><Data ss:Type="Number">0</Data></Cell>
++   </Row>
++   <!-- Filas adicionales pueden copiar la lógica de la fila 2 -->
++  </Table>
++ </Worksheet>
++ <Worksheet ss:Name="Equivalencias caseras">
++  <Table>
++   <Row>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Alimento</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Peso por unidad (g)</Data></Cell>
++   </Row>
++   <Row>
++    <Cell><Data ss:Type="String">Empanada con queso</Data></Cell>
++    <Cell><Data ss:Type="Number">100</Data></Cell>
++   </Row>
++   <!-- Agregar más equivalencias aquí -->
++  </Table>
++ </Worksheet>
++ <Worksheet ss:Name="Composicion 100g">
++  <Table>
++   <Row>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Alimento</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Kcal</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Proteína (g)</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Grasa (g)</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">CHO (g)</Data></Cell>
++   </Row>
++   <Row>
++    <Cell><Data ss:Type="String">Empanada con queso</Data></Cell>
++    <Cell><Data ss:Type="Number">300</Data></Cell>
++    <Cell><Data ss:Type="Number">10</Data></Cell>
++    <Cell><Data ss:Type="Number">15</Data></Cell>
++    <Cell><Data ss:Type="Number">35</Data></Cell>
++   </Row>
++   <!-- Agregar más alimentos aquí -->
++  </Table>
++ </Worksheet>
++ <Worksheet ss:Name="Factores de correccion">
++  <Table>
++   <Row>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Alimento</Data></Cell>
++    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Factor</Data></Cell>
++   </Row>
++   <!-- Datos opcionales -->
++  </Table>
++ </Worksheet>
++</Workbook>
+ 
+EOF
+)
